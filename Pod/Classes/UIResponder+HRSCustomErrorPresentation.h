@@ -14,6 +14,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HRSErrorCoalescingQueue;
 @interface UIResponder (HRSCustomErrorPresentation)
 
@@ -47,7 +49,7 @@
                           successful. You should retry the action that lead to
                           the error in this case.
  */
-- (void)presentError:(NSError *)error completionHandler:(void (^)(BOOL didRecover))completionHandler;
+- (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler;
 
 /**
  Presents an error that is related to a certain view controller to the user.
@@ -86,7 +88,7 @@
                           successful. You should retry the action that lead to
                           the error in this case.
  */
-- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(void (^)(BOOL didRecover))completionHandler;
+- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler;
 
 /**
  Called when the receiver is about to present or forward an error. The returned
@@ -111,6 +113,8 @@
  @return The error you want the receiver to present or forward or nil if you
          do not want any error to be presented or forwarded.
  */
-- (NSError *)willPresentError:(NSError *)error;
+- (nullable NSError *)willPresentError:(NSError *)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

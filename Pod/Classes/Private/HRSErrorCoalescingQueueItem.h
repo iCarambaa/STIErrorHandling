@@ -14,6 +14,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HRSErrorCoalescingQueueItem : NSObject
 
 @property (nonatomic, strong, readonly) NSError *error;
@@ -22,3 +24,6 @@
 + (instancetype)itemWithError:(NSError *)error completionHandler:(void(^)(BOOL didRecover))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

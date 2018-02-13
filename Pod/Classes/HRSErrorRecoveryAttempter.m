@@ -18,11 +18,12 @@
 
 #import "HRSErrorLocalizationHelper.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HRSErrorRecoveryAttempter ()
 
-@property (nonatomic, strong, readwrite) NSMutableArray *recoveryOptions;
-@property (nonatomic, strong, readwrite) NSMutableArray *recoveryAttempts;
+@property (nonatomic, strong, readwrite) NSMutableArray<NSString *> *recoveryOptions;
+@property (nonatomic, strong, readwrite) NSMutableArray<HRSRecoveryBlock> *recoveryAttempts;
 
 @end
 
@@ -39,7 +40,7 @@
 	return self;
 }
 
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)(void))recoveryBlock
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock
 {
 	NSParameterAssert(title);
 	NSParameterAssert(recoveryBlock);
@@ -82,11 +83,11 @@
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
 {
-    BOOL(^recoveryBlock)(void) = self.recoveryAttempts[recoveryOptionIndex];
+    HRSRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
 	return recoveryBlock();
 }
 
-- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(nullable SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo
 {
 	// method signature:
 	// - (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo;
@@ -114,3 +115,6 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
+

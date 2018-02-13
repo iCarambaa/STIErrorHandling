@@ -16,10 +16,11 @@
 
 #import "HRSErrorCoalescingQueue.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIResponder (HRSCustomErrorPresentation)
 
-- (void)presentError:(NSError *)error completionHandler:(void (^)(BOOL didRecover))completionHandler
+- (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
 {
 	error = [self willPresentError:error];
 	
@@ -42,7 +43,7 @@
 	}
 }
 
-- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(void (^)(BOOL didRecover))completionHandler
+- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
 {
 	error = [self willPresentError:error];
 	
@@ -77,9 +78,11 @@
 	}
 }
 
-- (NSError *)willPresentError:(NSError *)error
+- (nullable NSError *)willPresentError:(NSError *)error
 {
 	return error;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

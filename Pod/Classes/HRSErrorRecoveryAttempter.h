@@ -14,6 +14,10 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef BOOL (^HRSRecoveryBlock)(void);
+
 @interface HRSErrorRecoveryAttempter : NSObject
 
 /**
@@ -39,7 +43,7 @@
  @param recoveryBlock The block that will be executed if the user selects
                       this recovery option.
  */
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)(void))recoveryBlock;
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock;
 
 /**
  A convenience method to adds a recovery option that does no recovery and is
@@ -66,6 +70,9 @@
  @return The array with all localized recovery option titles. The first title
          is the default recovery option.
  */
-- (NSArray *)localizedRecoveryOptions;
+- (NSArray<NSString *> *)localizedRecoveryOptions;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

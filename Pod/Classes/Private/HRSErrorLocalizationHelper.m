@@ -1,5 +1,7 @@
 #import "HRSErrorLocalizationHelper.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation HRSErrorLocalizationHelper
 
 + (NSString *)localizedTitleFromKey:(NSString *)key
@@ -20,5 +22,6 @@
     return title;
 }
 
-
 @end
+
+NS_ASSUME_NONNULL_END

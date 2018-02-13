@@ -17,11 +17,12 @@
 #import "HRSErrorCoalescingQueueItem.h"
 #import "HRSErrorPresenter.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HRSErrorCoalescingQueue ()
 
 @property (nonatomic, assign, readwrite, getter=isPresenting) BOOL presenting;
-@property (nonatomic, strong, readonly) NSMutableArray *queue;
+@property (nonatomic, strong, readonly) NSMutableArray<HRSErrorCoalescingQueueItem *> *queue;
 
 @end
 
@@ -53,7 +54,7 @@
     [self.queue addObject:item];
 }
 
-- (HRSErrorCoalescingQueueItem *)dequeueItem {
+- (nullable HRSErrorCoalescingQueueItem *)dequeueItem {
     if (self.queue.count == 0) {
         return nil;
     }
@@ -63,7 +64,7 @@
     return nextItem;
 }
 
-- (NSArray *)dequeueItemsEqualToItem:(HRSErrorCoalescingQueueItem *)item {
+- (NSArray<HRSErrorCoalescingQueueItem *> *)dequeueItemsEqualToItem:(HRSErrorCoalescingQueueItem *)item {
     __block NSRange itemRange = NSMakeRange(0, 0);
     [self.queue enumerateObjectsUsingBlock:^(HRSErrorCoalescingQueueItem *obj, NSUInteger idx, BOOL *stop) {
         if ([obj isEqual:item]) {
@@ -73,7 +74,7 @@
         }
     }];
     
-    NSArray *nextItems = [self.queue subarrayWithRange:itemRange];
+    NSArray<HRSErrorCoalescingQueueItem *> *nextItems = [self.queue subarrayWithRange:itemRange];
     [self.queue removeObjectsInRange:itemRange];
     return nextItems;
 }
@@ -100,7 +101,7 @@
                 item.completionHandler(didRecover);
             }
             
-            NSArray *equalItems = [self dequeueItemsEqualToItem:item];
+            NSArray<HRSErrorCoalescingQueueItem *> *equalItems = [self dequeueItemsEqualToItem:item];
             for (HRSErrorCoalescingQueueItem *item in equalItems) {
                 if (item.completionHandler) {
                     item.completionHandler(didRecover);
@@ -114,7 +115,7 @@
     }];
 }
 
-- (void)addError:(NSError *)error completionHandler:(void(^)(BOOL didRecover))completionHandler {
+- (void)addError:(NSError *)error completionHandler:(nullable void(^)(BOOL didRecover))completionHandler {
     HRSErrorCoalescingQueueItem *item = [HRSErrorCoalescingQueueItem itemWithError:error completionHandler:completionHandler];
     [self enqueueItem:item];
     [self presentErrorIfPossible];
@@ -126,3 +127,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

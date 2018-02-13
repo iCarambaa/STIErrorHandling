@@ -14,6 +14,8 @@
 
 #import "HRSErrorCoalescingQueueItem.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation HRSErrorCoalescingQueueItem
 
 + (instancetype)itemWithError:(NSError *)error completionHandler:(void(^)(BOOL didRecover))completionHandler {
@@ -69,3 +71,6 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
+

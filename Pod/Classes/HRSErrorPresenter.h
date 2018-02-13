@@ -19,7 +19,7 @@
 /**
  @warning You should not set a custom delegate to a `HRSErrorPresenter`.
  */
-@property(nonatomic,assign) id delegate __unavailable;
+@property(nonatomic, assign) id delegate __unavailable;
 
 /**
  Creates a new `HRSErrorPresenter` object (a `UIAlertView`) that is fully
