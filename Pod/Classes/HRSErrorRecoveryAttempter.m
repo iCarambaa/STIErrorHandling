@@ -39,7 +39,7 @@
 	return self;
 }
 
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)())recoveryBlock
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)(void))recoveryBlock
 {
 	NSParameterAssert(title);
 	NSParameterAssert(recoveryBlock);
@@ -82,7 +82,7 @@
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
 {
-	BOOL(^recoveryBlock)() = self.recoveryAttempts[recoveryOptionIndex];
+    BOOL(^recoveryBlock)(void) = self.recoveryAttempts[recoveryOptionIndex];
 	return recoveryBlock();
 }
 

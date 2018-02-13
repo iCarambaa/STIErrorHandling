@@ -39,7 +39,7 @@
  @param recoveryBlock The block that will be executed if the user selects
                       this recovery option.
  */
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)())recoveryBlock;
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(BOOL(^)(void))recoveryBlock;
 
 /**
  A convenience method to adds a recovery option that does no recovery and is

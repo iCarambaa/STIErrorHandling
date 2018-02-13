@@ -30,7 +30,7 @@
 	UIApplication *application = [UIApplication sharedApplication];
 	BOOL responderDelegateUnavailable = ![application.delegate isKindOfClass:[UIResponder class]];
 	
-	if (application.delegate == self ||
+	if ((id _Nonnull)application.delegate == self ||
 		(application == self && responderDelegateUnavailable)) {
 		// this is the default implementation of the app delegate or the
 		// application itself, if its delegate does not inherit from UIResponder.
@@ -52,8 +52,8 @@
 	
 	UIApplication *application = [UIApplication sharedApplication];
 	BOOL responderDelegateUnavailable = ![application.delegate isKindOfClass:[UIResponder class]];
-	
-	if (application.delegate == self ||
+    
+    if ((id _Nonnull)application.delegate == self ||
 		(application == self && responderDelegateUnavailable)) {
 		// this is the default implementation of the app delegate or the
 		// application itself, if its delegate does not inherit from UIResponder.
