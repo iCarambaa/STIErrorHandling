@@ -1,9 +1,13 @@
-target 'HRSCustomErrorHandling', :exclusive => true do
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '8.0'
+
+target 'HRSCustomErrorHandling' do
   pod "HRSCustomErrorHandling", :path => "../"
+
+  target 'Tests' do
+    inherit! :search_paths
+    pod 'OCMock'
+  end
 end
 
-target 'Tests', :exclusive => true do
-  pod "HRSCustomErrorHandling", :path => "../"
-
-  pod 'OCMock'
-end
