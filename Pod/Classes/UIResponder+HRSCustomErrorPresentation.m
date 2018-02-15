@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
 {
+    NSAssert([NSThread isMainThread], @"Must be called on main thread");
 	error = [self willPresentError:error];
 	
 	if (error == nil) {
@@ -45,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
 {
+    NSAssert([NSThread isMainThread], @"Must be called on main thread");
 	error = [self willPresentError:error];
 	
 	if (error == nil) {
