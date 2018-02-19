@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
     [self presentErrorIfPossible];
 }
 
-- (void)presentError:(NSError *)error completionHandler:(void(^)(BOOL didRecover))completionHandler {
+- (void)presentError:(NSError *)error completionHandler:(nullable void(^)(BOOL didRecover))completionHandler {
     HRSErrorPresenter *presenter = [HRSErrorPresenter presenterWithError:error completionHandler:completionHandler];
     [presenter show];
 }

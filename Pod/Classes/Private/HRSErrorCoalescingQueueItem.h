@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HRSErrorCoalescingQueueItem : NSObject
 
 @property (nonatomic, strong, readonly) NSError *error;
-@property (nonatomic, copy, readonly) void(^completionHandler)(BOOL didRecover);
+@property (nonatomic, copy, nullable, readonly) void(^completionHandler)(BOOL didRecover);
 
-+ (instancetype)itemWithError:(NSError *)error completionHandler:(void(^)(BOOL didRecover))completionHandler;
++ (instancetype)itemWithError:(NSError *)error completionHandler:(nullable void(^)(BOOL didRecover))completionHandler;
 
 @end
 
