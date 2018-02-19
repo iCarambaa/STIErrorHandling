@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
 [![Platform](https://img.shields.io/cocoapods/p/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
 
+(This is a work in progress fork)
+
 HRSCustomErrorHandling is a small Framework that provides a base implementation for error handling in iOS applications. It deals with the problem to streamline the presentation of errors in various parts of an application as well as provide APIs to implement error specific recovery options the user of the application can choose from.
 
 The presentation of an error is reduced to a single line of code that can be called from any view, view controller or any other class that inherits from `UIResponder`:
@@ -74,6 +76,10 @@ To create an error you need to provide a couple of informations the alert view w
 When passing this error to `-[UIResponder presentError:completionHandler:]` it will create an alert view with the title that is stored in `NSLocalizedFailureReasonErrorKey` and the message stored in `NSLocalizedRecoverySuggestionErrorKey`. The alert view has only one button, labeled 'OK'. No recovery is done. This is the minimum information that is needed to present an error to the user.
 
 To add recovery options, you call `addRecoveryOptionWithTitle:recoveryAttempt:` on the `HRSErrorRecoveryAttempter` once for every recovery option you want to add. It takes the localized title of the button and a block that contains the action that should be triggered if the user chooses this recovery option. The block returns a `BOOL` that describes whether error recovery was successful or not. **Please note** that you should always add at least one recovery option that returns NO. This gives the user the possibility to dismiss the alert view in the case that you think your error recovery was successful but the error still occurs on the next retry. To make this easier for you, the `HRSErrorRecoveryAttempter` has a couple of convenience methods that add such an option including a localized text.
+
+### Intercepting an error
+
+Sometimes you want to intercept an error along the way, e.g. to present it inline. To check wether you want to intercept an error you can override `-[UIResponder canInterceptError:]`. If you return `YES`, `-[UIResponder interceptError:completionHandler:]` will be called and the error will no longer forwarded in the responder chain. Make sure to call the completion handler.
 
 
 ## License
