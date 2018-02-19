@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 	if (error == nil) {
 		return;
 	}
+    
+    if ([self canInterceptError:error]) {
+        [self interceptError:error completionHandler:completionHandler];
+        return;
+    }
 	
 	UIApplication *application = [UIApplication sharedApplication];
 	BOOL responderDelegateUnavailable = ![application.delegate isKindOfClass:[UIResponder class]];
@@ -78,6 +83,14 @@ NS_ASSUME_NONNULL_BEGIN
 		UIResponder *nextResponder = ([self nextResponder] ?: [UIApplication sharedApplication]);
 		[nextResponder presentError:error onViewController:viewController completionHandler:completionHandler];
 	}
+}
+
+- (void)interceptError:(NSError *)error completionHandler:(nullable void (^)(BOOL))completionHandler {
+    NSAssert(NO, @"Must be overriden by subclasses that can intercept an error");
+}
+
+- (BOOL)canInterceptError:(NSError *)error {
+    return NO;
 }
 
 - (nullable NSError *)willPresentError:(NSError *)error

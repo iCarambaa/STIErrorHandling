@@ -38,6 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
  It is recommended to retry the action that lead to the error in the first place
  when the error recovery was successful.
  
+ You should only override this method at the end of the responder chain. You can
+ use `canInterceptError:` and `interceptError:completionHandler` to conditionally
+ 
+ 
  @note You can override this method in your application delegate to create your
        own custom error presentation UI. Make sure to let your delegate inherit
        from `UIResponder` for this hook to work.
@@ -50,6 +54,28 @@ NS_ASSUME_NONNULL_BEGIN
                           the error in this case.
  */
 - (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler;
+
+/**
+ Similar to `presentError:completionHandler` override this method if you want
+ to check conditionally in `canInterceptError` if you want to present the
+ error or forward it up the responder chain.
+
+ @param error             Error which should be displayed.
+ @param completionHandler completion handler which should be called after
+                          presentation finished.
+ */
+- (void)interceptError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler;
+
+/**
+ Override and return `YES` if you want to intercept the error and display
+ it yourself. The default implementation returns `NO`.
+
+ @param error   The error the responder chain is forwarding.
+ @return `YES`  if you want to stop going up the respnder chain and display
+                handle the error.
+ 
+ */
+- (BOOL)canInterceptError:(NSError *)error;
 
 /**
  Presents an error that is related to a certain view controller to the user.
