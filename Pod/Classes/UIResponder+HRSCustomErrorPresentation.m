@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
     // Call error configurators before calling any `UIResponder`.
-    for (id<HRSErrorConfigurator> configurator in [HRSCustomErrorHandling sharedInstance].configuratorsBeforeChain) {
+    for (id<HRSErrorConfigurator> configurator in [HRSCustomErrorHandling sharedInstance].configurators) {
         error = [configurator willPresentError:error];
         if (error == nil) {
             return;
