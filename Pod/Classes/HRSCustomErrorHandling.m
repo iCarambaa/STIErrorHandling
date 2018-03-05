@@ -18,6 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation HRSCustomErrorHandling
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _configurators = @[];
+    }
+    return self;
+}
+
 + (instancetype)sharedInstance {
     static HRSCustomErrorHandling *instance = nil;
     static dispatch_once_t onceToken;
