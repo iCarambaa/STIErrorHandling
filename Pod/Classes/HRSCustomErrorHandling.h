@@ -17,3 +17,34 @@
 #import "HRSErrorCoalescingQueue.h"
 #import "HRSErrorPresenter.h"
 #import "HRSErrorRecoveryAttempter.h"
+#import "HRSErrorConfigurator.h"
+
+@interface HRSCustomErrorHandling : NSObject
+
+/**
+ The configurators which will be called before the error is forwarded to the responder chain.
+ 
+ The `configurators` are a easy way to process errors before handing control over to the responder chain.
+ They can be used to ensure that lower level API Errors are always wrapped into meaningful errors or to
+ ensure no "user cancelled" errors are bubbled up the chain.
+ 
+ New configurators can be added by calling `-[HRSCustomErrorHandling addErrorConfiguratorBeforeChain:]`.
+ */
+@property (strong, nonatomic, readonly) NSArray<id<HRSErrorConfigurator>> *configurators;
+
+/**
+ Singleton used for configuration. All configuration is optional.
+
+ @return Singleton configuration object.
+ */
++ (instancetype)sharedInstance;
+
+/**
+ Adds an error configurator which will be called before forwarding the error to the responder chain.
+ 
+ Multiple added configurators will be called in the order they have been added.
+
+ @param configurator A configurator which can manipulate an error.
+ */
+- (void)addErrorConfigurator:(id<HRSErrorConfigurator>)configurator;
+@end

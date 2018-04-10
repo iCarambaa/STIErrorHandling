@@ -15,6 +15,8 @@
 #import "UIResponder+HRSCustomErrorPresentation.h"
 
 #import "HRSErrorCoalescingQueue.h"
+#import "HRSErrorConfigurator.h"
+#import "HRSCustomErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
 {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
+    // Call error configurators before calling any `UIResponder`.
+    for (id<HRSErrorConfigurator> configurator in [HRSCustomErrorHandling sharedInstance].configurators) {
+        error = [configurator willPresentError:error];
+        if (error == nil) {
+            return;
+        }
+    }
+    
 	error = [self willPresentError:error];
 	
 	if (error == nil) {
