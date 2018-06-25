@@ -14,7 +14,6 @@
 
 #import "HRSErrorPresenterDelegate.h"
 
-
 @interface HRSErrorPresenterDelegate ()
 
 @property (nonatomic, strong, readwrite) NSError *error;
@@ -22,16 +21,13 @@
 
 @end
 
-
 @implementation HRSErrorPresenterDelegate
 
-+ (instancetype)delegateWithError:(NSError *)error completionHandler:(void(^)(BOOL))completionHandler
-{
++ (instancetype)delegateWithError:(NSError *)error completionHandler:(void(^)(BOOL))completionHandler {
 	return [[self alloc] initWithError:error completionHandler:completionHandler];
 }
 
-- (instancetype)initWithError:(NSError *)error completionHandler:(void(^)(BOOL))completionHandler
-{
+- (instancetype)initWithError:(NSError *)error completionHandler:(void(^)(BOOL))completionHandler {
 	self = [super init];
 	if (self) {
 		_error = error;
@@ -40,12 +36,9 @@
 	return self;
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertController:(UIAlertController *)alertController clickedButtonAtIndex:(NSInteger)buttonIndex {
 	id recoveryAttempter = [self.error recoveryAttempter];
-	// alert view button indexes are ordered oposite to the error options index!
-	NSInteger optionIndex = alertView.numberOfButtons - buttonIndex - 1;
-	BOOL didRecover = [recoveryAttempter attemptRecoveryFromError:self.error optionIndex:optionIndex];
+	BOOL didRecover = [recoveryAttempter attemptRecoveryFromError:self.error optionIndex:buttonIndex];
 	if (self.completionHandler) {
 		self.completionHandler(didRecover);
 	}

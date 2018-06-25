@@ -14,16 +14,14 @@
 
 #import <XCTest/XCTest.h>
 
-
 @interface HRSErrorRecoveryAttempterTests : XCTestCase
-
 @end
-
 
 @implementation HRSErrorRecoveryAttempterTests
 
-- (void)testSynchronousRecoveryBlockInvocation
-{
+- (void)testSynchronousRecoveryBlockInvocation {
+    NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:nil];
+    
 	__block BOOL blockInvoked = NO;
 	BOOL(^recoveryBlock)(void) = ^BOOL{
 		blockInvoked = YES;
@@ -33,13 +31,14 @@
 	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
-	[attempter attemptRecoveryFromError:nil optionIndex:0];
+	[attempter attemptRecoveryFromError:error optionIndex:0];
 	
 	XCTAssertTrue(blockInvoked, @"Recovery block should have been invoked.");
 }
 
-- (void)testSynchronousRecoveryAttemptSuccessful
-{
+- (void)testSynchronousRecoveryAttemptSuccessful {
+    NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:nil];
+    
 	BOOL(^recoveryBlock)(void) = ^BOOL{
 		return YES;
 	};
@@ -47,13 +46,14 @@
 	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
-	BOOL successful = [attempter attemptRecoveryFromError:nil optionIndex:0];
+	BOOL successful = [attempter attemptRecoveryFromError:error optionIndex:0];
 	
 	XCTAssertTrue(successful, @"Recovery should have been successful.");
 }
 
-- (void)testSynchronousRecoveryAttemptUnsuccessful
-{
+- (void)testSynchronousRecoveryAttemptUnsuccessful {
+    NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:nil];
+    
 	BOOL(^recoveryBlock)(void) = ^BOOL{
 		return NO;
 	};
@@ -61,18 +61,18 @@
 	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
-	BOOL successful = [attempter attemptRecoveryFromError:nil optionIndex:0];
+	BOOL successful = [attempter attemptRecoveryFromError:error optionIndex:0];
 	
 	XCTAssertFalse(successful, @"Recovery should not have been successful.");
 }
 
-- (void)_testAsynchronousRecoveryAttemptSuccessful_didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo
-{
+- (void)_testAsynchronousRecoveryAttemptSuccessful_didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo {
 	XCTAssertTrue(didRecover, @"Did recover not of expected value.");
 }
 
-- (void)testAsynchronousRecoveryAttemptSuccessful
-{
+- (void)testAsynchronousRecoveryAttemptSuccessful {
+    NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:nil];
+    
 	BOOL(^recoveryBlock)(void) = ^BOOL{
 		return YES;
 	};
@@ -80,16 +80,16 @@
 	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
-	[attempter attemptRecoveryFromError:nil optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptSuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
+	[attempter attemptRecoveryFromError:error optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptSuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
 }
 
-- (void)_testAsynchronousRecoveryAttemptUnsuccessful_didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo
-{
+- (void)_testAsynchronousRecoveryAttemptUnsuccessful_didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo {
 	XCTAssertFalse(didRecover, @"Did recover not of expected value.");
 }
 
-- (void)testAsynchronousRecoveryAttemptUnsuccessful
-{
+- (void)testAsynchronousRecoveryAttemptUnsuccessful {
+    NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:nil];
+    
 	BOOL(^recoveryBlock)(void) = ^BOOL{
 		return NO;
 	};
@@ -97,7 +97,7 @@
 	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
-	[attempter attemptRecoveryFromError:nil optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptUnsuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
+	[attempter attemptRecoveryFromError:error optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptUnsuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
 }
 
 - (void)testEquality {

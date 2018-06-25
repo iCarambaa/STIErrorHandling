@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C08F24919AA431C00B8B6EC /* HRSErrorPresenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08F24819AA431C00B8B6EC /* HRSErrorPresenterTests.m */; };
 		4C08F24B19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08F24A19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m */; };
 		4C08F24D19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08F24C19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m */; };
 		4CD6839F19AA345500999A50 /* HRSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6839B19AA345500999A50 /* HRSAppDelegate.m */; };
@@ -41,7 +40,6 @@
 /* Begin PBXFileReference section */
 		18E9D2D80ADB975F1C01EF45 /* Pods-HRSCustomErrorHandling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRSCustomErrorHandling.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRSCustomErrorHandling/Pods-HRSCustomErrorHandling.debug.xcconfig"; sourceTree = "<group>"; };
 		2D254AC4CD4D6333531CC6A5 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C08F24819AA431C00B8B6EC /* HRSErrorPresenterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSErrorPresenterTests.m; sourceTree = "<group>"; };
 		4C08F24A19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSErrorPresenterDelegateTests.m; sourceTree = "<group>"; };
 		4C08F24C19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSErrorRecoveryAttempterTests.m; sourceTree = "<group>"; };
 		4CD6839A19AA345500999A50 /* HRSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRSAppDelegate.h; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				4CD683AB19AA3EB400999A50 /* HRSResponderChainTests.m */,
-				4C08F24819AA431C00B8B6EC /* HRSErrorPresenterTests.m */,
 				4C08F24A19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m */,
 				4C08F24C19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m */,
 				79E2B2581ABDA97F003CCCC2 /* HRSErrorCoalescingQueueTests.m */,
@@ -212,8 +209,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				8591AFAE226DF9845E463BCA /* [CP] Embed Pods Frameworks */,
-				86C6B6C837A2C366924A8C27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,8 +227,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				372456C8517087E34F732799 /* [CP] Embed Pods Frameworks */,
-				A9578F1158588299BB176BA1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,7 +245,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HRS;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Michael Ochs";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -318,66 +311,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		372456C8517087E34F732799 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8591AFAE226DF9845E463BCA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRSCustomErrorHandling/Pods-HRSCustomErrorHandling-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86C6B6C837A2C366924A8C27 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HRSCustomErrorHandling/Pods-HRSCustomErrorHandling-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A9578F1158588299BB176BA1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E3FEFD888D29C049E622E67E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -417,7 +350,6 @@
 				79E2B2591ABDA97F003CCCC2 /* HRSErrorCoalescingQueueTests.m in Sources */,
 				4CD683AC19AA3EB400999A50 /* HRSResponderChainTests.m in Sources */,
 				4C08F24B19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m in Sources */,
-				4C08F24919AA431C00B8B6EC /* HRSErrorPresenterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,12 +376,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -495,12 +429,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -536,6 +472,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HRSCustomErrorHandling/HRSCustomErrorHandling-Prefix.pch";
 				INFOPLIST_FILE = "HRSCustomErrorHandling/HRSCustomErrorHandling-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hrs.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -551,6 +488,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HRSCustomErrorHandling/HRSCustomErrorHandling-Prefix.pch";
 				INFOPLIST_FILE = "HRSCustomErrorHandling/HRSCustomErrorHandling-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hrs.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

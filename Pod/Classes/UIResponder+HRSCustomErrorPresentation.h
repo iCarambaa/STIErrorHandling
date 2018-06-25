@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  If the responder that receives this message is the application delegate or it
  is the application itself and the application delegate does not inherit from
- `UIResponder` the error is presented in a `UIAlertView` dialog.
+ `UIResponder` the error is presented in a `UIAlertController` dialog.
  
  After the user dismisses the alert view, the error recovery for this option is
  automatically started. After the error recovery, the completion handler is
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  If the responder that receives this message is the application delegate or it
  is the application itself and the application delegate does not inherit from
- `UIResponder` the error is presented in a `UIAlertView` dialog, as long as the
+ `UIResponder` the error is presented in a `UIAlertController` dialog, as long as the
  passed in view controller is visible on screen.
  
  @warning If the passed in view controller is not visible on the screen, the

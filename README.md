@@ -47,7 +47,7 @@ The example project shows a simple save operation that fails if the file in ques
 
 ### Presenting an error
 
-To present an error in your application you can call the following method in every instance of `UIView`, `UIViewController` or any other class that inherits from `UIResponder` to show a `UIAlertView` that represents the error:
+To present an error in your application you can call the following method in every instance of `UIView`, `UIViewController` or any other class that inherits from `UIResponder` to show a `UIAlertController` that represents the error:
 
     -[UIResponder presentError:completionHandler:]
     

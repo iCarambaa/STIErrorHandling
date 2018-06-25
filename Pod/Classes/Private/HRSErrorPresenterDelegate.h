@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorPresenterDelegate : NSObject <UIAlertViewDelegate>
+@interface HRSErrorPresenterDelegate : NSObject
 
 /**
  Creates a presenter delegate to work closely together with the
@@ -33,6 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return The delegate to be used by the `HRSErrorPresenter` instance.
  */
 + (instancetype)delegateWithError:(NSError *)error completionHandler:(nullable void(^)(BOOL))completionHandler;
+
+/**
+ Triggers action of the recoveryAttempter.
+
+ @param alertController Calling AlertControlle.
+ @param buttonIndex Index of selected action.
+ */
+- (void)alertController:(UIAlertController *)alertController clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
 

@@ -16,6 +16,7 @@
 
 #import "HRSErrorCoalescingQueueItem.h"
 #import "HRSErrorPresenter.h"
+#import "HRSCustomErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSMutableArray<HRSErrorCoalescingQueueItem *> *queue;
 
 @end
-
 
 @implementation HRSErrorCoalescingQueue
 
@@ -45,8 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
     }
     return self;
 }
-
-
 
 #pragma mark - queue
 
@@ -78,8 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
     [self.queue removeObjectsInRange:itemRange];
     return nextItems;
 }
-
-
 
 #pragma mark - error handling
 
@@ -123,7 +119,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)presentError:(NSError *)error completionHandler:(nullable void(^)(BOOL didRecover))completionHandler {
     HRSErrorPresenter *presenter = [HRSErrorPresenter presenterWithError:error completionHandler:completionHandler];
-    [presenter show];
+    UIViewController *presentingViewController = [HRSCustomErrorHandling sharedInstance].presentingViewController;
+    if (!presentingViewController) {
+        presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    }
+    if (presentingViewController) {
+        [presentingViewController presentViewController:presenter animated:YES completion:nil];
+    }
 }
 
 @end

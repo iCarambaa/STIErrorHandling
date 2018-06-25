@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSError (HRSErrorHandling)
 
-
 /**
  Initializes a new `NSError` object with `object` added to the `userInfo` dictionary.
  

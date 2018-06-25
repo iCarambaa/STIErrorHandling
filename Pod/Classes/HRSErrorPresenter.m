@@ -20,29 +20,24 @@
 #import "HRSErrorPresenterDelegate.h"
 #import "HRSErrorRecoveryAttempter.h"
 
-
 @interface HRSErrorPresenter ()
 
 @property (nonatomic, strong, readwrite) HRSErrorPresenterDelegate *presenterDelegate;
 
 @end
 
-
 @implementation HRSErrorPresenter
 
 @dynamic delegate; // prevent warning
 
-+ (instancetype)presenterWithError:(NSError *)error completionHandler:(void (^)(BOOL))completionHandler
-{
++ (instancetype)presenterWithError:(NSError *)error completionHandler:(void (^)(BOOL))completionHandler {
 	return [[self alloc] initWithError:error completionHandler:completionHandler];
 }
 
-- (instancetype)initWithError:(NSError *)error completionHandler:(void (^)(BOOL))completionHandler
-{
+- (instancetype)initWithError:(NSError *)error completionHandler:(void (^)(BOOL))completionHandler {
 	HRSErrorPresenterDelegate *delegate = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
 	
-    self = [super initWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion delegate:delegate cancelButtonTitle:nil otherButtonTitles:nil];
-	
+    self = [HRSErrorPresenter alertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion preferredStyle:UIAlertControllerStyleAlert];
     NSArray *recoveryOptions = error.localizedRecoveryOptions;
     if (recoveryOptions.count == 0) { // the error does not have recovery options... try to be intelligent...
         id recoveryAttempter = error.recoveryAttempter;
@@ -57,14 +52,15 @@
         recoveryOptions = @[ [HRSErrorLocalizationHelper okLocalization] ];
     }
     
-	for (NSString *title in [recoveryOptions reverseObjectEnumerator]) {
-		[self addButtonWithTitle:title];
+	for (NSString *title in recoveryOptions) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:title style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self.presenterDelegate alertController:self clickedButtonAtIndex:[self.actions indexOfObject:action]];
+        }];
+        [self addAction:action];
 	}
 	
 	self.presenterDelegate = delegate;
-	
 	return self;
 }
-
 
 @end

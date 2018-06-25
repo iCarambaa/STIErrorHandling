@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorPresenter : UIAlertView
+@interface HRSErrorPresenter : UIAlertController
 
 /**
  @warning You should not set a custom delegate to a `HRSErrorPresenter`.
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) id delegate __unavailable;
 
 /**
- Creates a new `HRSErrorPresenter` object (a `UIAlertView`) that is fully
+ Creates a new `HRSErrorPresenter` object (a `UIAlertController`) that is fully
  configured with the passed-in error and linked with the given completion
  handler.
 
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)presenterWithError:(NSError *)error completionHandler:(nullable void (^)(BOOL))completionHandler;
 
 /**
- Initializes a `HRSErrorPresenter` object (a `UIAlertView`) that is fully
+ Initializes a `HRSErrorPresenter` object (a `UIAlertController`) that is fully
  configured with the passed-in error and linked with the given completion
  handler.
  
