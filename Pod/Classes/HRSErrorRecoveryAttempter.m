@@ -27,6 +27,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation HRSErrorRecoveryAttempter
 
++ (instancetype)attempterWithOkayRecoveryOption {
+    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    [recoveryAttempter addOkayRecoveryOption];
+    return recoveryAttempter;
+}
+
++ (instancetype)attempterWithCancelRecoveryOption {
+    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    [recoveryAttempter addOkayRecoveryOption];
+    return recoveryAttempter;
+}
+
 - (instancetype)init {
 	self = [super init];
 	if (self) {

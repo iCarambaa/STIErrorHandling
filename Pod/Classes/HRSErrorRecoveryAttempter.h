@@ -21,6 +21,20 @@ typedef BOOL (^HRSRecoveryBlock)(void);
 @interface HRSErrorRecoveryAttempter : NSObject
 
 /**
+ Initialized a new HRSErrorRecoveryAttempter with recovery 'OK' option.
+ 
+ @return RecoveryAttempter with 'OK' option.
+ */
++ (instancetype)attempterWithOkayRecoveryOption;
+
+/**
+ Initialized a new HRSErrorRecoveryAttempter with 'Cancel' option.
+
+ @return RecoveryAttempter with 'Cancel' option.
+ */
++ (instancetype)attempterWithCancelRecoveryOption;
+
+/**
  Add a recovery option to the attempter that is used for presentation and error
  recovery.
  
