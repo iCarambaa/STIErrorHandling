@@ -35,7 +35,7 @@
 /**
  The presentingViewController is used to present the AlertController.
  
- If its not set, the application keywindow rootviewcontroller is used.
+ If it's not set, the application's keyWindow rootViewController is used.
  */
 @property (nonatomic, nullable, weak) UIViewController *presentingViewController;
 
