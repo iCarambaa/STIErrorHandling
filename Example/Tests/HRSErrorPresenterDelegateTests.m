@@ -16,16 +16,12 @@
 
 #import <HRSCustomErrorHandling/HRSErrorPresenterDelegate.h>
 
-
 @interface HRSErrorPresenterDelegateTests : XCTestCase
-
 @end
-
 
 @implementation HRSErrorPresenterDelegateTests
 
-- (void)testDismissCallsErrorRecovery
-{
+- (void)testDismissCallsErrorRecovery {
 	id recoveryAttempter = OCMClassMock([HRSErrorRecoveryAttempter class]);
 	
 	NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:@{ NSRecoveryAttempterErrorKey: recoveryAttempter }];
@@ -34,17 +30,12 @@
 	};
 	
 	HRSErrorPresenterDelegate *sut = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
+    HRSErrorPresenter *alertController = [[HRSErrorPresenter alloc] initWithError:error completionHandler:nil];
 	
 	[[recoveryAttempter expect] attemptRecoveryFromError:error optionIndex:0];
-	
-	id alertViewMock = OCMClassMock([UIAlertView class]);
-	[[[alertViewMock stub] andReturnValue:OCMOCK_VALUE(1)] numberOfButtons];
-	
-	[sut alertView:alertViewMock clickedButtonAtIndex:0]; // should be any value, but this is currently not supported by OCMock.
-	
-	[alertViewMock stopMocking];
-	
+	[sut alertController:alertController clickedButtonAtIndex:0]; // should be any value, but this is currently not supported by OCMock.
 	[recoveryAttempter verify];
+    
 	[recoveryAttempter stopMocking];
 }
 
@@ -53,35 +44,40 @@
  *  first button is the left most but the first recovery option should be the
  *  default (right most) option.
  */
-- (void)testMapButtonIndexToRecoveryOption
-{
-	id recoveryAttempter = OCMClassMock([HRSErrorRecoveryAttempter class]);
-	
-	NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:@{ NSRecoveryAttempterErrorKey: recoveryAttempter }];
+- (void)testMapButtonIndexToRecoveryOption {
+    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    [recoveryAttempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:^BOOL{
+        return NO;
+    }];
+    [recoveryAttempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:^BOOL{
+        return NO;
+    }];
+    [recoveryAttempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:^BOOL{
+        return NO;
+    }];
+	id recoveryAttempterMock = OCMPartialMock(recoveryAttempter);
+
+	NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:@{ NSRecoveryAttempterErrorKey: recoveryAttempterMock }];
 	void(^completionHandler)(BOOL didRecover) = ^void(BOOL didRecover) {
 		// empty
 	};
 	
 	HRSErrorPresenterDelegate *sut = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
+    HRSErrorPresenter *alertController = [[HRSErrorPresenter alloc] initWithError:error completionHandler:nil];
+
+	[[recoveryAttempterMock expect] attemptRecoveryFromError:error optionIndex:0];
+    [sut alertController:alertController clickedButtonAtIndex:0];
+	[recoveryAttempterMock verify];
 	
-	id alertViewMock = OCMClassMock([UIAlertView class]);
-	[[[alertViewMock stub] andReturnValue:OCMOCK_VALUE(3)] numberOfButtons];
-	
-	[[recoveryAttempter expect] attemptRecoveryFromError:error optionIndex:0];
-	[sut alertView:alertViewMock clickedButtonAtIndex:2];
-	[recoveryAttempter verify];
-	
-	[[recoveryAttempter expect] attemptRecoveryFromError:error optionIndex:1];
-	[sut alertView:alertViewMock clickedButtonAtIndex:1];
-	[recoveryAttempter verify];
-	
-	[[recoveryAttempter expect] attemptRecoveryFromError:error optionIndex:2];
-	[sut alertView:alertViewMock clickedButtonAtIndex:0];
-	[recoveryAttempter verify];
-	
-	[alertViewMock stopMocking];
-	
-	[recoveryAttempter stopMocking];
+    [[recoveryAttempterMock expect] attemptRecoveryFromError:error optionIndex:1];
+    [sut alertController:alertController clickedButtonAtIndex:1];
+    [recoveryAttempterMock verify];
+
+    [[recoveryAttempterMock expect] attemptRecoveryFromError:error optionIndex:2];
+    [sut alertController:alertController clickedButtonAtIndex:2];
+    [recoveryAttempterMock verify];
+
+	[recoveryAttempterMock stopMocking];
 }
 
 @end

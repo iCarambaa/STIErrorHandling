@@ -33,6 +33,13 @@
 @property (strong, nonatomic, readonly) NSArray<id<HRSErrorConfigurator>> *configurators;
 
 /**
+ The presentingViewController is used to present the AlertController.
+ 
+ If it's not set, the application's keyWindow rootViewController is used.
+ */
+@property (nonatomic, nullable, weak) UIViewController *presentingViewController;
+
+/**
  Singleton used for configuration. All configuration is optional.
 
  @return Singleton configuration object.
@@ -47,4 +54,5 @@
  @param configurator A configurator which can manipulate an error.
  */
 - (void)addErrorConfigurator:(id<HRSErrorConfigurator>)configurator;
+
 @end

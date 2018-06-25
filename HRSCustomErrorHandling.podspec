@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.author           = { "HRS Hotel Reservation Service, Michael Ochs" => "michael.ochs@hrs.com" }
   s.source           = { :git => "https://github.com/Hotel-Reservation-Service/HRSCustomErrorHandling.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*.{h,m}'

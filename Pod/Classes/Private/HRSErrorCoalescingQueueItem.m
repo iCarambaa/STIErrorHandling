@@ -31,8 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-
-
 #pragma mark - equality
 
 - (NSUInteger)hash {
@@ -66,11 +64,9 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         isEqualRecoveryAttempter = (self.error.recoveryAttempter == otherItem.error.recoveryAttempter);
     }
-    
     return isEqualError && isEqualRecoveryAttempter;
 }
 
 @end
 
 NS_ASSUME_NONNULL_END
-

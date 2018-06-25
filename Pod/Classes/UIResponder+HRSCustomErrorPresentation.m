@@ -22,8 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIResponder (HRSCustomErrorPresentation)
 
-- (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
-{
+- (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
     // Call error configurators before calling any `UIResponder`.
     for (id<HRSErrorConfigurator> configurator in [HRSCustomErrorHandling sharedInstance].configurators) {
@@ -59,8 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 	}
 }
 
-- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler
-{
+- (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
 	error = [self willPresentError:error];
 	
@@ -103,8 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
     return NO;
 }
 
-- (nullable NSError *)willPresentError:(NSError *)error
-{
+- (nullable NSError *)willPresentError:(NSError *)error {
 	return error;
 }
 

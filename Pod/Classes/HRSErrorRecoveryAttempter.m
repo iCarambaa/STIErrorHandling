@@ -13,9 +13,7 @@
 //
 
 #import "HRSErrorRecoveryAttempter.h"
-
 #import <objc/message.h>
-
 #import "HRSErrorLocalizationHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,11 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
 @implementation HRSErrorRecoveryAttempter
 
-- (instancetype)init
-{
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		_recoveryOptions = [NSMutableArray new];
@@ -40,62 +36,49 @@ NS_ASSUME_NONNULL_BEGIN
 	return self;
 }
 
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock
-{
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock {
 	NSParameterAssert(title);
 	NSParameterAssert(recoveryBlock);
 	if (title == nil || recoveryBlock == NULL) {
 		return;
 	}
-	
 	[self.recoveryOptions addObject:title];
 	[self.recoveryAttempts addObject:[recoveryBlock copy]];
 }
 
-
-
 #pragma mark - Convenience options
 
-- (void)addOkayRecoveryOption
-{
+- (void)addOkayRecoveryOption {
 	NSString *title = [HRSErrorLocalizationHelper okLocalization];
 	[self addRecoveryOptionWithTitle:title recoveryAttempt:^BOOL{
 		return NO;
 	}];
 }
 
-- (void)addCancelRecoveryOption
-{
+- (void)addCancelRecoveryOption {
 	NSString *title = [HRSErrorLocalizationHelper cancelLocalization];
 	[self addRecoveryOptionWithTitle:title recoveryAttempt:^BOOL{
 		return NO;
 	}];
 }
 
-- (NSArray *)localizedRecoveryOptions
-{
+- (NSArray *)localizedRecoveryOptions {
 	return [self.recoveryOptions copy];
 }
 
-
-
 #pragma mark - NSErrorRecoveryAttempting
 
-- (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex
-{
+- (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex {
     HRSRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
 	return recoveryBlock();
 }
 
-- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(nullable SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo
-{
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(nullable id)delegate didRecoverSelector:(nullable SEL)didRecoverSelector contextInfo:(nullable void *)contextInfo {
 	// method signature:
 	// - (void)didPresentErrorWithRecovery:(BOOL)didRecover contextInfo:(void *)contextInfo;
 	BOOL didRecover = [self attemptRecoveryFromError:error optionIndex:recoveryOptionIndex];
 	((void (*)(id delegate, SEL selector, BOOL didRecover, void *contextInfo))objc_msgSend)(delegate, didRecoverSelector, didRecover, contextInfo);
 }
-
-
 
 #pragma mark - equality
 
@@ -117,4 +100,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
