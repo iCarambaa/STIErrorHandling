@@ -1,6 +1,6 @@
 # HRSCustomErrorHandling
 
-[![Build Status](https://travis-ci.org/iCarambaa/HRSCustomErrorHandling.svg?branch=develop)](https://travis-ci.org/iCarambaa/HRSCustomErrorHandling)
+[![Build Status](https://travis-ci.com/iCarambaa/STIErrorHandling.svg?token=fXZNL2n3bsDZP68osMBC&branch=develop)](https://travis-ci.com/iCarambaa/STIErrorHandling)
 [![Version](https://img.shields.io/cocoapods/v/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
 [![License](https://img.shields.io/cocoapods/l/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
 [![Platform](https://img.shields.io/cocoapods/p/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
