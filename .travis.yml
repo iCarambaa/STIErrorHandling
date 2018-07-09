@@ -5,4 +5,4 @@ install:
   - bundle install
   - cd Example/ && pod install && cd -
 script:
-  - bundle exec fastlane scan -w Example/HRSCustomErrorHandling.xcworkspace 
+  - bundle exec fastlane scan -w Example/HRSCustomErrorHandling.xcworkspace --scheme "STICustomErrorHandling" 
