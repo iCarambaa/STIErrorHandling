@@ -3,6 +3,6 @@
 language: objective-c
 install:
   - bundle install
-  - pod install
+  - cd Example/ && pod install && cd -
 script:
   - bundle exec fastlane scan -w Example/HRSCustomErrorHandling.xcworkspace 
