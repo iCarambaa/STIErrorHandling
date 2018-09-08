@@ -14,7 +14,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import <HRSCustomErrorHandling/HRSErrorPresenterDelegate.h>
+#import <STIErrorHandling/HRSErrorPresenterDelegate.h>
 
 @interface HRSErrorPresenterDelegateTests : XCTestCase
 @end

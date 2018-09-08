@@ -22,5 +22,5 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     
-    #import <HRSCustomErrorHandling/HRSCustomErrorHandling.h>
+    #import <STIErrorHandling/HRSCustomErrorHandling.h>
 #endif

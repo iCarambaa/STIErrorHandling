@@ -1,23 +1,23 @@
 PODS:
-  - HRSCustomErrorHandling (0.4.0)
   - OCMock (3.2.2)
+  - STIErrorHandling (0.5.0)
 
 DEPENDENCIES:
-  - HRSCustomErrorHandling (from `../`)
   - OCMock
+  - STIErrorHandling (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - OCMock
 
 EXTERNAL SOURCES:
-  HRSCustomErrorHandling:
+  STIErrorHandling:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HRSCustomErrorHandling: 90ae77fd6b21b53a6ab4f5a7c708999008d38605
   OCMock: 18c9b7e67d4c2770e95bb77a9cc1ae0c91fe3835
+  STIErrorHandling: c5035924b80ea3d7a807487cb953c9a5e8438d7d
 
-PODFILE CHECKSUM: 41f9f18d9c59776be2daea9924e4a242b59f1369
+PODFILE CHECKSUM: 466cdbf7a8f6a829c0dd848644e4b6c6f5702223
 
 COCOAPODS: 1.5.3

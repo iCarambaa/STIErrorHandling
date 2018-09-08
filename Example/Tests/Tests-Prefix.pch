@@ -14,7 +14,7 @@
 
 #ifdef __OBJC__
 
-  #import <HRSCustomErrorHandling/HRSCustomErrorHandling.h>
+  #import <STIErrorHandling/HRSCustomErrorHandling.h>
 
   #import <UIKit/UIKit.h>
   #import <OCMock/OCMock.h>
