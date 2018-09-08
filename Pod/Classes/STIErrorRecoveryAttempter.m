@@ -12,29 +12,29 @@
 //	limitations under the License.
 //
 
-#import "HRSErrorRecoveryAttempter.h"
+#import "STIErrorRecoveryAttempter.h"
 #import <objc/message.h>
 #import "HRSErrorLocalizationHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorRecoveryAttempter ()
+@interface STIErrorRecoveryAttempter ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray<NSString *> *recoveryOptions;
-@property (nonatomic, strong, readwrite) NSMutableArray<HRSRecoveryBlock> *recoveryAttempts;
+@property (nonatomic, strong, readwrite) NSMutableArray<STIRecoveryBlock> *recoveryAttempts;
 
 @end
 
-@implementation HRSErrorRecoveryAttempter
+@implementation STIErrorRecoveryAttempter
 
 + (instancetype)attempterWithOkayRecoveryOption {
-    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    STIErrorRecoveryAttempter *recoveryAttempter = [[STIErrorRecoveryAttempter alloc] init];
     [recoveryAttempter addOkayRecoveryOption];
     return recoveryAttempter;
 }
 
 + (instancetype)attempterWithCancelRecoveryOption {
-    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    STIErrorRecoveryAttempter *recoveryAttempter = [[STIErrorRecoveryAttempter alloc] init];
     [recoveryAttempter addOkayRecoveryOption];
     return recoveryAttempter;
 }
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 	return self;
 }
 
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock {
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(STIRecoveryBlock)recoveryBlock {
 	NSParameterAssert(title);
 	NSParameterAssert(recoveryBlock);
 	if (title == nil || recoveryBlock == NULL) {
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - NSErrorRecoveryAttempting
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex {
-    HRSRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
+    STIRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
 	return recoveryBlock();
 }
 
@@ -105,10 +105,16 @@ NS_ASSUME_NONNULL_BEGIN
     if ([object isKindOfClass:[self class]] == NO) {
         return NO;
     }
-    HRSErrorRecoveryAttempter *otherRecoveryAttempter = object;
+    STIErrorRecoveryAttempter *otherRecoveryAttempter = object;
     return [self.recoveryOptions isEqual:otherRecoveryAttempter.recoveryOptions];
 }
 
 @end
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+@implementation HRSErrorRecoveryAttempter : STIErrorRecoveryAttempter
+@end
+#pragma clang diagnostic pop
 
 NS_ASSUME_NONNULL_END

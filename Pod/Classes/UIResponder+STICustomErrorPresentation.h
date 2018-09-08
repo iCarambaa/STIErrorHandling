@@ -17,7 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class HRSErrorCoalescingQueue;
-@interface UIResponder (HRSCustomErrorPresentation)
+@interface UIResponder (STICustomErrorPresentation)
 
 /**
  Presents an error to the user.

@@ -19,7 +19,7 @@
 - (NSError *)willPresentError:(NSError *)anError
 {
 	if (anError.recoveryAttempter == nil) {
-		HRSErrorRecoveryAttempter *recoveryAttempter = [HRSErrorRecoveryAttempter new];
+		STIErrorRecoveryAttempter *recoveryAttempter = [STIErrorRecoveryAttempter new];
 		[recoveryAttempter addRecoveryOptionWithTitle:@"Retry" recoveryAttempt:^{
 			return YES;
 		}];

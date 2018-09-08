@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorPresenter : UIAlertController
+@interface STIErrorPresenter : UIAlertController
 
 /**
  @warning You should not set a custom delegate to a `HRSErrorPresenter`.

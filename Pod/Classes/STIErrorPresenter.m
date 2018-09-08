@@ -12,21 +12,21 @@
 //	limitations under the License.
 //
 
-#import "HRSErrorPresenter.h"
+#import "STIErrorPresenter.h"
 
 #import <objc/runtime.h>
 
 #import "HRSErrorLocalizationHelper.h"
 #import "HRSErrorPresenterDelegate.h"
-#import "HRSErrorRecoveryAttempter.h"
+#import "STIErrorRecoveryAttempter.h"
 
-@interface HRSErrorPresenter ()
+@interface STIErrorPresenter ()
 
 @property (nonatomic, strong, readwrite) HRSErrorPresenterDelegate *presenterDelegate;
 
 @end
 
-@implementation HRSErrorPresenter
+@implementation STIErrorPresenter
 
 @dynamic delegate; // prevent warning
 
@@ -37,14 +37,14 @@
 - (instancetype)initWithError:(NSError *)error completionHandler:(void (^)(BOOL))completionHandler {
 	HRSErrorPresenterDelegate *delegate = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
 	
-    self = [HRSErrorPresenter alertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion preferredStyle:UIAlertControllerStyleAlert];
+    self = [STIErrorPresenter alertControllerWithTitle:error.localizedDescription message:error.localizedRecoverySuggestion preferredStyle:UIAlertControllerStyleAlert];
     NSArray *recoveryOptions = error.localizedRecoveryOptions;
     if (recoveryOptions.count == 0) { // the error does not have recovery options... try to be intelligent...
         id recoveryAttempter = error.recoveryAttempter;
-        if (recoveryAttempter && [recoveryAttempter isKindOfClass:[HRSErrorRecoveryAttempter class]]) {
+        if (recoveryAttempter && [recoveryAttempter isKindOfClass:[STIErrorRecoveryAttempter class]]) {
             // the recovery attempter belongs to the HRSCustomErrorHandling
             // framework. Let's use its recovery options!
-            recoveryOptions = ((HRSErrorRecoveryAttempter *)recoveryAttempter).localizedRecoveryOptions;
+            recoveryOptions = ((STIErrorRecoveryAttempter *)recoveryAttempter).localizedRecoveryOptions;
         }
     }
     if (recoveryOptions.count == 0) {

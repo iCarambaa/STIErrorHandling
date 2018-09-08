@@ -12,20 +12,20 @@
 //	limitations under the License.
 //
 
-#import "UIResponder+HRSCustomErrorPresentation.h"
+#import "UIResponder+STICustomErrorPresentation.h"
 
-#import "HRSErrorCoalescingQueue.h"
-#import "HRSErrorConfigurator.h"
-#import "HRSCustomErrorHandling.h"
+#import "STIErrorCoalescingQueue.h"
+#import "STIErrorConfigurator.h"
+#import "STIErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation UIResponder (HRSCustomErrorPresentation)
+@implementation UIResponder (STICustomErrorPresentation)
 
 - (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
     // Call error configurators before calling any `UIResponder`.
-    for (id<HRSErrorConfigurator> configurator in [HRSCustomErrorHandling sharedInstance].configurators) {
+    for (id<STIErrorConfigurator> configurator in [STIErrorHandling sharedInstance].configurators) {
         error = [configurator willPresentError:error];
         if (error == nil) {
             return;
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 		(application == self && responderDelegateUnavailable)) {
 		// this is the default implementation of the app delegate or the
 		// application itself, if its delegate does not inherit from UIResponder.
-        [[HRSErrorCoalescingQueue defaultQueue] addError:error completionHandler:completionHandler];
+        [[STIErrorCoalescingQueue defaultQueue] addError:error completionHandler:completionHandler];
 		
 	} else {
 		UIResponder *nextResponder = ([self nextResponder] ?: [UIApplication sharedApplication]);
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 		if (viewController.isViewLoaded && viewController.view.window) {
 			// if the view controller's view is visible, present the error,
 			// otherwise suppress the error!
-            [[HRSErrorCoalescingQueue defaultQueue] addError:error completionHandler:completionHandler];
+            [[STIErrorCoalescingQueue defaultQueue] addError:error completionHandler:completionHandler];
 		} else {
 			if (completionHandler != NULL) {
 				// make sure the completion handler is always called

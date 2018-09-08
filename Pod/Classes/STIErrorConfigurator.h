@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol HRSErrorConfigurator <NSObject>
+@protocol STIErrorConfigurator <NSObject>
 
 /**
  Called when the receiver is about to present or forward an error. The returned

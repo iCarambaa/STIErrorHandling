@@ -16,9 +16,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef BOOL (^HRSRecoveryBlock)(void);
+typedef BOOL (^STIRecoveryBlock)(void);
 
-@interface HRSErrorRecoveryAttempter : NSObject
+@interface STIErrorRecoveryAttempter : NSObject
 
 /**
  Initialized a new HRSErrorRecoveryAttempter with recovery 'OK' option.
@@ -57,7 +57,7 @@ typedef BOOL (^HRSRecoveryBlock)(void);
  @param recoveryBlock The block that will be executed if the user selects
                       this recovery option.
  */
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock;
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(STIRecoveryBlock)recoveryBlock;
 
 /**
  A convenience method to adds a recovery option that does no recovery and is
@@ -86,6 +86,13 @@ typedef BOOL (^HRSRecoveryBlock)(void);
  */
 - (NSArray<NSString *> *)localizedRecoveryOptions;
 
+@end
+
+/// We add a subclass here to allow backward compatibility for people
+/// migrating from HRSCustomErrorHandling. This was a define before but
+/// as a subclass it's also exposed to Swift and can be marked as deprecated.
+__deprecated_msg("HRSErrorRecoveryAttempter has been renamed to STIErrorRecoveryAttempter")
+@interface HRSErrorRecoveryAttempter : STIErrorRecoveryAttempter
 @end
 
 NS_ASSUME_NONNULL_END
