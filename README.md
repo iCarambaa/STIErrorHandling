@@ -1,11 +1,11 @@
-# STICustomErrorHandling
+# STIErrorHandling
 
-[![Build Status](https://travis-ci.com/iCarambaa/STIErrorHandling.svg?token=fXZNL2n3bsDZP68osMBC&branch=develop)](https://travis-ci.com/iCarambaa/STIErrorHandling)
-[![Version](https://img.shields.io/cocoapods/v/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
-[![License](https://img.shields.io/cocoapods/l/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
-[![Platform](https://img.shields.io/cocoapods/p/HRSCustomErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/HRSCustomErrorHandling)
+[![Build Status](https://travis-ci.org/iCarambaa/STIErrorHandling.svg?branch=develop)](https://travis-ci.org/iCarambaa/STIErrorHandling)
+![Version](https://img.shields.io/cocoapods/v/STIErrorHandling.svg?style=flat-square)
+[![License](https://img.shields.io/cocoapods/l/STIErrorHandling.svg?style=flat-square)](http://cocoadocs.org/docsets/STIErrorHandling)
+![Platform](https://img.shields.io/cocoapods/p/STIErrorHandling.svg?style=flat-square)
 
-STICustomErrorHandling is a small Framework that provides a base implementation for error handling in iOS applications. It deals with the problem to streamline the presentation of errors in various parts of an application as well as provide APIs to implement error specific recovery options the user of the application can choose from.
+STIErrorHandling is a small Framework that provides a base implementation for error handling in iOS applications. It deals with the problem to streamline the presentation of errors in various parts of an application as well as provide APIs to implement error specific recovery options the user of the application can choose from.
 
 The presentation of an error is reduced to a single line of code that can be called from any view, view controller or any other class that inherits from `UIResponder`:
 
@@ -67,7 +67,7 @@ Sometimes you want to intercept an error along the way, e.g. to present it inlin
 
 ## Installation
 
-STICustomErrorHandling is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+STIErrorHandling is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
     pod "STIErrorHandling"
 
@@ -79,4 +79,4 @@ STIErrorHandling is a fork from the great project [HRSCustomErrorHandling](https
 
 ## License
 
-STICustomErrorHandling is available under the Apache 2 license. See the LICENSE file for more info.
+STIErrorHandling is available under the Apache 2 license. See the LICENSE file for more info.
