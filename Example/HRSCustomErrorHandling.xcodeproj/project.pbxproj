@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26D5B3F321443EA500CF048E /* STIErrorHandling.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 26D5B3F221443EA500CF048E /* STIErrorHandling.podspec */; };
 		4C08F24B19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08F24A19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m */; };
 		4C08F24D19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C08F24C19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m */; };
 		4CD6839F19AA345500999A50 /* HRSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD6839B19AA345500999A50 /* HRSAppDelegate.m */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		18E9D2D80ADB975F1C01EF45 /* Pods-HRSCustomErrorHandling.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRSCustomErrorHandling.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRSCustomErrorHandling/Pods-HRSCustomErrorHandling.debug.xcconfig"; sourceTree = "<group>"; };
+		26D5B3F221443EA500CF048E /* STIErrorHandling.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = STIErrorHandling.podspec; path = ../STIErrorHandling.podspec; sourceTree = "<group>"; };
 		2D254AC4CD4D6333531CC6A5 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C08F24A19AA442400B8B6EC /* HRSErrorPresenterDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSErrorPresenterDelegateTests.m; sourceTree = "<group>"; };
 		4C08F24C19AA4A7100B8B6EC /* HRSErrorRecoveryAttempterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRSErrorRecoveryAttempterTests.m; sourceTree = "<group>"; };
@@ -67,7 +69,6 @@
 		C35244AEA0D2A1B334C5E613 /* Pods-HRSCustomErrorHandling.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRSCustomErrorHandling.release.xcconfig"; path = "Pods/Target Support Files/Pods-HRSCustomErrorHandling/Pods-HRSCustomErrorHandling.release.xcconfig"; sourceTree = "<group>"; };
 		DD120F1BE6440A9BD3F3ADAD /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DEF6BFE99942550C3D7826C1 /* libPods-HRSCustomErrorHandling.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HRSCustomErrorHandling.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E88FD4B58E254D3F81E9B571 /* HRSCustomErrorHandling.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HRSCustomErrorHandling.podspec; path = ../HRSCustomErrorHandling.podspec; sourceTree = "<group>"; };
 		EF18F5AA66F1C539F125F35D /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,7 +179,7 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				E88FD4B58E254D3F81E9B571 /* HRSCustomErrorHandling.podspec */,
+				26D5B3F221443EA500CF048E /* STIErrorHandling.podspec */,
 				9AB14EB49B7C48D39909D9F6 /* README.md */,
 				4CD683A719AA39ED00999A50 /* CONTRIBUTING.md */,
 				4CD683A819AA39ED00999A50 /* CREDITS.md */,
@@ -280,6 +281,7 @@
 				4CD683AA19AA39ED00999A50 /* CREDITS.md in Resources */,
 				4CD683A019AA345500999A50 /* Main.storyboard in Resources */,
 				4CD683A919AA39ED00999A50 /* CONTRIBUTING.md in Resources */,
+				26D5B3F321443EA500CF048E /* STIErrorHandling.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

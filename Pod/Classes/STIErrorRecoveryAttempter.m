@@ -111,4 +111,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+@implementation HRSErrorRecoveryAttempter : STIErrorRecoveryAttempter
+@end
+#pragma clang diagnostic pop
+
 NS_ASSUME_NONNULL_END

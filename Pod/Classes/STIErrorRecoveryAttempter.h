@@ -88,8 +88,11 @@ typedef BOOL (^HRSRecoveryBlock)(void);
 
 @end
 
-/// We add a define here to allow backward compatibility for people
-/// migrating from HRSCustomErrorHandling.
-#define HRSErrorRecoveryAttempter STIErrorRecoveryAttempter
+/// We add a subclass here to allow backward compatibility for people
+/// migrating from HRSCustomErrorHandling. This was a define before but
+/// as a subclass it's also exposed to Swift and can be marked as deprecated.
+__deprecated_msg("HRSErrorRecoveryAttempter has been renamed to STIErrorRecoveryAttempter")
+@interface HRSErrorRecoveryAttempter : STIErrorRecoveryAttempter
+@end
 
 NS_ASSUME_NONNULL_END
