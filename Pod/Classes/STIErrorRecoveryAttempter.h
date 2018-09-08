@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef BOOL (^HRSRecoveryBlock)(void);
+typedef BOOL (^STIRecoveryBlock)(void);
 
 @interface STIErrorRecoveryAttempter : NSObject
 
@@ -57,7 +57,7 @@ typedef BOOL (^HRSRecoveryBlock)(void);
  @param recoveryBlock The block that will be executed if the user selects
                       this recovery option.
  */
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock;
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(STIRecoveryBlock)recoveryBlock;
 
 /**
  A convenience method to adds a recovery option that does no recovery and is

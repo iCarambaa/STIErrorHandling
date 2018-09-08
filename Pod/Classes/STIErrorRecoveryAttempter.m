@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface STIErrorRecoveryAttempter ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray<NSString *> *recoveryOptions;
-@property (nonatomic, strong, readwrite) NSMutableArray<HRSRecoveryBlock> *recoveryAttempts;
+@property (nonatomic, strong, readwrite) NSMutableArray<STIRecoveryBlock> *recoveryAttempts;
 
 @end
 
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 	return self;
 }
 
-- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(HRSRecoveryBlock)recoveryBlock {
+- (void)addRecoveryOptionWithTitle:(NSString *)title recoveryAttempt:(STIRecoveryBlock)recoveryBlock {
 	NSParameterAssert(title);
 	NSParameterAssert(recoveryBlock);
 	if (title == nil || recoveryBlock == NULL) {
@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - NSErrorRecoveryAttempting
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex {
-    HRSRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
+    STIRecoveryBlock recoveryBlock = self.recoveryAttempts[recoveryOptionIndex];
 	return recoveryBlock();
 }
 
