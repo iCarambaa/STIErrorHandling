@@ -28,7 +28,7 @@
 		return YES;
 	};
 	
-	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+	STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
 	[attempter attemptRecoveryFromError:error optionIndex:0];
@@ -43,7 +43,7 @@
 		return YES;
 	};
 	
-	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+	STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
 	BOOL successful = [attempter attemptRecoveryFromError:error optionIndex:0];
@@ -58,7 +58,7 @@
 		return NO;
 	};
 	
-	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+	STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
 	BOOL successful = [attempter attemptRecoveryFromError:error optionIndex:0];
@@ -77,7 +77,7 @@
 		return YES;
 	};
 	
-	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+	STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
 	[attempter attemptRecoveryFromError:error optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptSuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
@@ -94,7 +94,7 @@
 		return NO;
 	};
 	
-	HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+	STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 	[attempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:recoveryBlock];
 	
 	[attempter attemptRecoveryFromError:error optionIndex:0 delegate:self didRecoverSelector:@selector(_testAsynchronousRecoveryAttemptUnsuccessful_didPresentErrorWithRecovery:contextInfo:) contextInfo:NULL];
@@ -108,16 +108,16 @@
         return YES;
     };
     
-    HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+    STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
     [attempter addRecoveryOptionWithTitle:@"Foo" recoveryAttempt:recoveryBlock];
     
-    HRSErrorRecoveryAttempter *equalAttempter = [HRSErrorRecoveryAttempter new];
+    STIErrorRecoveryAttempter *equalAttempter = [STIErrorRecoveryAttempter new];
     [equalAttempter addRecoveryOptionWithTitle:@"Foo" recoveryAttempt:otherRecoveryBlock];
     
-    HRSErrorRecoveryAttempter *unequalAttempter = [HRSErrorRecoveryAttempter new];
+    STIErrorRecoveryAttempter *unequalAttempter = [STIErrorRecoveryAttempter new];
     [unequalAttempter addRecoveryOptionWithTitle:@"Bar" recoveryAttempt:otherRecoveryBlock];
     
-    HRSErrorRecoveryAttempter *advancedAttempter = [HRSErrorRecoveryAttempter new];
+    STIErrorRecoveryAttempter *advancedAttempter = [STIErrorRecoveryAttempter new];
     [advancedAttempter addRecoveryOptionWithTitle:@"Foo" recoveryAttempt:otherRecoveryBlock];
     [advancedAttempter addRecoveryOptionWithTitle:@"Bar" recoveryAttempt:otherRecoveryBlock];
     

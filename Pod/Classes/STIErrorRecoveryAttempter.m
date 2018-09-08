@@ -12,29 +12,29 @@
 //	limitations under the License.
 //
 
-#import "HRSErrorRecoveryAttempter.h"
+#import "STIErrorRecoveryAttempter.h"
 #import <objc/message.h>
 #import "HRSErrorLocalizationHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorRecoveryAttempter ()
+@interface STIErrorRecoveryAttempter ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray<NSString *> *recoveryOptions;
 @property (nonatomic, strong, readwrite) NSMutableArray<HRSRecoveryBlock> *recoveryAttempts;
 
 @end
 
-@implementation HRSErrorRecoveryAttempter
+@implementation STIErrorRecoveryAttempter
 
 + (instancetype)attempterWithOkayRecoveryOption {
-    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    STIErrorRecoveryAttempter *recoveryAttempter = [[STIErrorRecoveryAttempter alloc] init];
     [recoveryAttempter addOkayRecoveryOption];
     return recoveryAttempter;
 }
 
 + (instancetype)attempterWithCancelRecoveryOption {
-    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    STIErrorRecoveryAttempter *recoveryAttempter = [[STIErrorRecoveryAttempter alloc] init];
     [recoveryAttempter addOkayRecoveryOption];
     return recoveryAttempter;
 }
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_BEGIN
     if ([object isKindOfClass:[self class]] == NO) {
         return NO;
     }
-    HRSErrorRecoveryAttempter *otherRecoveryAttempter = object;
+    STIErrorRecoveryAttempter *otherRecoveryAttempter = object;
     return [self.recoveryOptions isEqual:otherRecoveryAttempter.recoveryOptions];
 }
 

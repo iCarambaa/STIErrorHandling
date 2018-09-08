@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-#import "HRSErrorCoalescingQueue.h"
+#import "STIErrorCoalescingQueue.h"
 
 
-@interface HRSErrorCoalescingQueue (Internal)
+@interface STIErrorCoalescingQueue (Internal)
 
 @property (nonatomic, assign, readwrite, getter=isPresenting) BOOL presenting;
 @property (nonatomic, strong, readonly) NSMutableArray *queue;
@@ -26,7 +26,7 @@
 
 @interface HRSErrorCoalescingQueueTests : XCTestCase
 
-@property (nonatomic, strong, readwrite) HRSErrorCoalescingQueue *sut;
+@property (nonatomic, strong, readwrite) STIErrorCoalescingQueue *sut;
 
 @end
 
@@ -36,7 +36,7 @@
 - (void)setUp {
     [super setUp];
     
-    self.sut = [HRSErrorCoalescingQueue new];
+    self.sut = [STIErrorCoalescingQueue new];
 }
 
 - (void)tearDown {

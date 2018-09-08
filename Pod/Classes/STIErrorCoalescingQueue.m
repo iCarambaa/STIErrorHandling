@@ -12,25 +12,25 @@
 //	limitations under the License.
 //
 
-#import "HRSErrorCoalescingQueue.h"
+#import "STIErrorCoalescingQueue.h"
 
 #import "HRSErrorCoalescingQueueItem.h"
-#import "HRSErrorPresenter.h"
-#import "HRSCustomErrorHandling.h"
+#import "STIErrorPresenter.h"
+#import "STIErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSErrorCoalescingQueue ()
+@interface STIErrorCoalescingQueue ()
 
 @property (nonatomic, assign, readwrite, getter=isPresenting) BOOL presenting;
 @property (nonatomic, strong, readonly) NSMutableArray<HRSErrorCoalescingQueueItem *> *queue;
 
 @end
 
-@implementation HRSErrorCoalescingQueue
+@implementation STIErrorCoalescingQueue
 
 + (instancetype)defaultQueue {
-    static HRSErrorCoalescingQueue *defaultQueue = nil;
+    static STIErrorCoalescingQueue *defaultQueue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         defaultQueue = [self new];
@@ -118,8 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)presentError:(NSError *)error completionHandler:(nullable void(^)(BOOL didRecover))completionHandler {
-    HRSErrorPresenter *presenter = [HRSErrorPresenter presenterWithError:error completionHandler:completionHandler];
-    UIViewController *presentingViewController = [HRSCustomErrorHandling sharedInstance].presentingViewController;
+    STIErrorPresenter *presenter = [STIErrorPresenter presenterWithError:error completionHandler:completionHandler];
+    UIViewController *presentingViewController = [STIErrorHandling sharedInstance].presentingViewController;
     if (!presentingViewController) {
         presentingViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     }

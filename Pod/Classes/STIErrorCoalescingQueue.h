@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  class, you simply override the mentioned methods and call
  `addError:completionHandler:` on your own queue.
  */
-@interface HRSErrorCoalescingQueue : NSObject
+@interface STIErrorCoalescingQueue : NSObject
 
 /**
  The default queue used by the default error presentation logic.
@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface HRSErrorCoalescingQueue (Subclassing)
+@interface STIErrorCoalescingQueue (Subclassing)
 
 /**
  Presents the passed in error.

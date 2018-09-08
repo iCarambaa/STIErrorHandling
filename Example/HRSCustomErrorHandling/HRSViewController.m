@@ -50,7 +50,7 @@
 	if ([anError.domain isEqualToString:NSCocoaErrorDomain] &&
 		anError.code == NSFileWriteFileExistsError) {
 		
-		HRSErrorRecoveryAttempter *attempter = [HRSErrorRecoveryAttempter new];
+		STIErrorRecoveryAttempter *attempter = [STIErrorRecoveryAttempter new];
 		[attempter addCancelRecoveryOption];
 		[attempter addRecoveryOptionWithTitle:@"Overwrite" recoveryAttempt:^BOOL{
 			[self.allowOverwriteSwitch setOn:YES animated:YES];

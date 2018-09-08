@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef BOOL (^HRSRecoveryBlock)(void);
 
-@interface HRSErrorRecoveryAttempter : NSObject
+@interface STIErrorRecoveryAttempter : NSObject
 
 /**
  Initialized a new HRSErrorRecoveryAttempter with recovery 'OK' option.
@@ -87,5 +87,9 @@ typedef BOOL (^HRSRecoveryBlock)(void);
 - (NSArray<NSString *> *)localizedRecoveryOptions;
 
 @end
+
+/// We add a define here to allow backward compatibility for people
+/// migrating from HRSCustomErrorHandling.
+#define HRSErrorRecoveryAttempter STIErrorRecoveryAttempter
 
 NS_ASSUME_NONNULL_END

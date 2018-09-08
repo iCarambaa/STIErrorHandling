@@ -22,7 +22,7 @@
 @implementation HRSErrorPresenterDelegateTests
 
 - (void)testDismissCallsErrorRecovery {
-	id recoveryAttempter = OCMClassMock([HRSErrorRecoveryAttempter class]);
+	id recoveryAttempter = OCMClassMock([STIErrorRecoveryAttempter class]);
 	
 	NSError *error = [NSError errorWithDomain:@"com.hrs.tests" code:1 userInfo:@{ NSRecoveryAttempterErrorKey: recoveryAttempter }];
 	void(^completionHandler)(BOOL didRecover) = ^void(BOOL didRecover) {
@@ -30,7 +30,7 @@
 	};
 	
 	HRSErrorPresenterDelegate *sut = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
-    HRSErrorPresenter *alertController = [[HRSErrorPresenter alloc] initWithError:error completionHandler:nil];
+    STIErrorPresenter *alertController = [[STIErrorPresenter alloc] initWithError:error completionHandler:nil];
 	
 	[[recoveryAttempter expect] attemptRecoveryFromError:error optionIndex:0];
 	[sut alertController:alertController clickedButtonAtIndex:0]; // should be any value, but this is currently not supported by OCMock.
@@ -45,7 +45,7 @@
  *  default (right most) option.
  */
 - (void)testMapButtonIndexToRecoveryOption {
-    HRSErrorRecoveryAttempter *recoveryAttempter = [[HRSErrorRecoveryAttempter alloc] init];
+    STIErrorRecoveryAttempter *recoveryAttempter = [[STIErrorRecoveryAttempter alloc] init];
     [recoveryAttempter addRecoveryOptionWithTitle:@"Test" recoveryAttempt:^BOOL{
         return NO;
     }];
@@ -63,7 +63,7 @@
 	};
 	
 	HRSErrorPresenterDelegate *sut = [HRSErrorPresenterDelegate delegateWithError:error completionHandler:completionHandler];
-    HRSErrorPresenter *alertController = [[HRSErrorPresenter alloc] initWithError:error completionHandler:nil];
+    STIErrorPresenter *alertController = [[STIErrorPresenter alloc] initWithError:error completionHandler:nil];
 
 	[[recoveryAttempterMock expect] attemptRecoveryFromError:error optionIndex:0];
     [sut alertController:alertController clickedButtonAtIndex:0];

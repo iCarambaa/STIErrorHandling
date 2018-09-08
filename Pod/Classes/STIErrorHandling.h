@@ -12,14 +12,14 @@
 //	limitations under the License.
 //
 
-#import "UIResponder+HRSCustomErrorPresentation.h"
-#import "NSError+HRSErrorHandling.h"
-#import "HRSErrorCoalescingQueue.h"
-#import "HRSErrorPresenter.h"
-#import "HRSErrorRecoveryAttempter.h"
-#import "HRSErrorConfigurator.h"
+#import "UIResponder+STICustomErrorPresentation.h"
+#import "NSError+STIErrorHandling.h"
+#import "STIErrorCoalescingQueue.h"
+#import "STIErrorPresenter.h"
+#import "STIErrorRecoveryAttempter.h"
+#import "STIErrorConfigurator.h"
 
-@interface HRSCustomErrorHandling : NSObject
+@interface STIErrorHandling : NSObject
 
 /**
  The configurators which will be called before the error is forwarded to the responder chain.
@@ -28,9 +28,9 @@
  They can be used to ensure that lower level API Errors are always wrapped into meaningful errors or to
  ensure no "user cancelled" errors are bubbled up the chain.
  
- New configurators can be added by calling `-[HRSCustomErrorHandling addErrorConfiguratorBeforeChain:]`.
+ New configurators can be added by calling `-[STIErrorHandling addErrorConfiguratorBeforeChain:]`.
  */
-@property (strong, nonatomic, readonly) NSArray<id<HRSErrorConfigurator>> *configurators;
+@property (strong, nonatomic, readonly) NSArray<id<STIErrorConfigurator>> *configurators;
 
 /**
  The presentingViewController is used to present the AlertController.
@@ -53,6 +53,6 @@
 
  @param configurator A configurator which can manipulate an error.
  */
-- (void)addErrorConfigurator:(id<HRSErrorConfigurator>)configurator;
+- (void)addErrorConfigurator:(id<STIErrorConfigurator>)configurator;
 
 @end

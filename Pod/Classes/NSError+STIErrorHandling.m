@@ -5,11 +5,11 @@
 //  Created by Sven Titgemeyer on 16.02.18.
 //
 
-#import "NSError+HRSErrorHandling.h"
+#import "NSError+STIErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation NSError (HRSErrorHandling)
+@implementation NSError (STIErrorHandling)
 
 - (NSError *)addingObject:(nullable id)object forUserInfoKey:(NSString *)key {
     NSMutableDictionary<NSString *, id> *userInfo = [self.userInfo mutableCopy];

@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class HRSErrorRecoveryAttempter;
 
-@interface NSError (HRSErrorHandling)
+@interface NSError (STIErrorHandling)
 
 /**
  Initializes a new `NSError` object with `object` added to the `userInfo` dictionary.

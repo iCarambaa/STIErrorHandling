@@ -89,7 +89,7 @@
 	
 	XCTAssertNil(invisibleViewController.nextResponder, @"Pre condition unfulfilled: The next responder should be nil as we are trying to test an invisible view controller.");
 	
-	id presenterMock = OCMClassMock([HRSErrorPresenter class]);
+	id presenterMock = OCMClassMock([STIErrorPresenter class]);
 	[[presenterMock reject] presenterWithError:error completionHandler:OCMOCK_ANY];
 	[[presenterMock reject] alloc];
 	

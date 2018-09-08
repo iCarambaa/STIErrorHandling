@@ -6,17 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HRSCustomErrorHandling.h"
+#import "STIErrorHandling.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HRSCustomErrorHandling()
+@interface STIErrorHandling()
 
-@property (strong, nonatomic, readwrite) NSArray<id<HRSErrorConfigurator>> *configurators;
+@property (strong, nonatomic, readwrite) NSArray<id<STIErrorConfigurator>> *configurators;
 
 @end
 
-@implementation HRSCustomErrorHandling
+@implementation STIErrorHandling
 
 - (instancetype)init {
     self = [super init];
@@ -27,15 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (instancetype)sharedInstance {
-    static HRSCustomErrorHandling *instance = nil;
+    static STIErrorHandling *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[HRSCustomErrorHandling alloc] init];
+        instance = [[STIErrorHandling alloc] init];
     });
     return instance;
 }
 
-- (void)addErrorConfigurator:(id<HRSErrorConfigurator>)configurator {
+- (void)addErrorConfigurator:(id<STIErrorConfigurator>)configurator {
     NSMutableArray *mutableConfigurators = [self.configurators mutableCopy];
     [mutableConfigurators addObject:configurator];
     self.configurators = [mutableConfigurators copy];
