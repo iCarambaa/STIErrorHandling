@@ -38,13 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
  It is recommended to retry the action that lead to the error in the first place
  when the error recovery was successful.
  
- You should only override this method at the end of the responder chain. You can
- use `canInterceptError:` and `interceptError:completionHandler` to conditionally
+ You should not override this method. You can
+ use `canInterceptError:` and `interceptError:completionHandler` to conditionally intercept errors.
  
- 
- @note You can override this method in your application delegate to create your
-       own custom error presentation UI. Make sure to let your delegate inherit
-       from `UIResponder` for this hook to work.
  
  @param error             The error that should be presented to the user.
  @param completionHandler The completion handler that is called when the user

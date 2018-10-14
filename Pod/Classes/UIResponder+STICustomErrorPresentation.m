@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation UIResponder (STICustomErrorPresentation)
 
 - (void)presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
-    NSAssert([NSThread isMainThread], @"Must be called on main thread");
     // Call error configurators before calling any `UIResponder`.
     for (id<STIErrorConfigurator> configurator in [STIErrorHandling sharedInstance].configurators) {
         error = [configurator willPresentError:error];
@@ -32,32 +31,39 @@ NS_ASSUME_NONNULL_BEGIN
         }
     }
     
-	error = [self willPresentError:error];
-	
-	if (error == nil) {
-		return;
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSAssert([NSThread isMainThread], @"Must be called on main thread");
+        [self _presentError:error completionHandler:completionHandler];
+    });
+}
+
+- (void)_presentError:(NSError *)error completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
+    error = [self willPresentError:error];
+    
+    if (error == nil) {
+        return;
+    }
     
     if ([self canInterceptError:error]) {
         [self interceptError:error completionHandler:completionHandler];
         return;
     }
-	
-	UIApplication *application = [UIApplication sharedApplication];
-	BOOL responderDelegateUnavailable = ![application.delegate isKindOfClass:[UIResponder class]];
-	
-	if ((id _Nonnull)application.delegate == self ||
-		(application == self && responderDelegateUnavailable)) {
-		// this is the default implementation of the app delegate or the
-		// application itself, if its delegate does not inherit from UIResponder.
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    BOOL responderDelegateUnavailable = ![application.delegate isKindOfClass:[UIResponder class]];
+    
+    if ((id _Nonnull)application.delegate == self ||
+        (application == self && responderDelegateUnavailable)) {
+        // this is the default implementation of the app delegate or the
+        // application itself, if its delegate does not inherit from UIResponder.
         [[STIErrorCoalescingQueue defaultQueue] addError:error completionHandler:completionHandler];
-		
-	} else {
-		UIResponder *nextResponder = ([self nextResponder] ?: [UIApplication sharedApplication]);
-		[nextResponder presentError:error completionHandler:completionHandler];
-	}
+        
+    } else {
+        UIResponder *nextResponder = ([self nextResponder] ?: [UIApplication sharedApplication]);
+        [nextResponder presentError:error completionHandler:completionHandler];
+    }
 }
-
+    
 - (void)presentError:(NSError *)error onViewController:(UIViewController *)viewController completionHandler:(nullable void (^)(BOOL didRecover))completionHandler {
     NSAssert([NSThread isMainThread], @"Must be called on main thread");
 	error = [self willPresentError:error];
