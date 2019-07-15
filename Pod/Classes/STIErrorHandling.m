@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-+ (instancetype)sharedInstance {
++ (instancetype _Nonnull)sharedInstance {
     static STIErrorHandling *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
     return instance;
 }
 
-- (void)addErrorConfigurator:(id<STIErrorConfigurator>)configurator {
+- (void)addErrorConfigurator:(id<STIErrorConfigurator>_Nonnull)configurator {
     NSMutableArray *mutableConfigurators = [self.configurators mutableCopy];
     [mutableConfigurators addObject:configurator];
     self.configurators = [mutableConfigurators copy];
