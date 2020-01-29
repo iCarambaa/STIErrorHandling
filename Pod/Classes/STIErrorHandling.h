@@ -30,7 +30,7 @@
  
  New configurators can be added by calling `-[STIErrorHandling addErrorConfiguratorBeforeChain:]`.
  */
-@property (strong, nonatomic, readonly) NSArray<id<STIErrorConfigurator>> *configurators;
+@property (strong, nonatomic, readonly) NSArray<id<STIErrorConfigurator>> * _Nonnull configurators;
 
 /**
  The presentingViewController is used to present the AlertController.
@@ -44,7 +44,7 @@
 
  @return Singleton configuration object.
  */
-+ (instancetype)sharedInstance;
++ (instancetype _Nonnull)sharedInstance;
 
 /**
  Adds an error configurator which will be called before forwarding the error to the responder chain.
@@ -53,6 +53,6 @@
 
  @param configurator A configurator which can manipulate an error.
  */
-- (void)addErrorConfigurator:(id<STIErrorConfigurator>)configurator;
+- (void)addErrorConfigurator:(id<STIErrorConfigurator>_Nonnull)configurator;
 
 @end
