@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "STIErrorHandling"
-  s.version          = "0.5.0"
+  s.version          = "0.5.1"
   s.summary          = "STIErrorHandling provides an easy way to handle error presentation and creation on iOS."
   s.description      = <<-DESC
                        STIErrorHandling is a small Framework that provides a base implementation for error handling in iOS applications. It deals with the problem to streamline the presentation of errors in various parts of an application as well as provide APIs to implement error specific recovery options the user of the application can choose from.
