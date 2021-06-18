@@ -18,6 +18,7 @@
 #import "STIErrorPresenter.h"
 #import "STIErrorRecoveryAttempter.h"
 #import "STIErrorConfigurator.h"
+@import UIKit;
 
 @interface STIErrorHandling : NSObject
 

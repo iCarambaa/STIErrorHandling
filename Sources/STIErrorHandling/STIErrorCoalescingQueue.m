@@ -14,7 +14,7 @@
 
 #import "STIErrorCoalescingQueue.h"
 
-#import "HRSErrorCoalescingQueueItem.h"
+#import "Private/HRSErrorCoalescingQueueItem.h"
 #import "STIErrorPresenter.h"
 #import "STIErrorHandling.h"
 

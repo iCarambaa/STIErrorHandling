@@ -2,6 +2,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@import UIKit;
+
 @interface HRSErrorLocalizationHelper : NSObject
 
 + (NSString *)okLocalization;

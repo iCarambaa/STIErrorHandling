@@ -14,7 +14,7 @@
 
 #import "STIErrorRecoveryAttempter.h"
 #import <objc/message.h>
-#import "HRSErrorLocalizationHelper.h"
+#import "Private/HRSErrorLocalizationHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

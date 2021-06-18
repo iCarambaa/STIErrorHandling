@@ -1,0 +1,4 @@
+module STIErrorHandling {
+    header "STIErrorHandling.h"
+    export *
+}

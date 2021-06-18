@@ -16,8 +16,8 @@
 
 #import <objc/runtime.h>
 
-#import "HRSErrorLocalizationHelper.h"
-#import "HRSErrorPresenterDelegate.h"
+#import "Private/HRSErrorLocalizationHelper.h"
+#import "Private/HRSErrorPresenterDelegate.h"
 #import "STIErrorRecoveryAttempter.h"
 
 @interface STIErrorPresenter ()
